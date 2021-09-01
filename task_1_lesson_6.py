@@ -16,14 +16,9 @@ F_NAME = 'nginx_logs.txt'
 
 def read_file(name):
     with open(name, 'r', encoding='UTF-8') as f:
-        content_pars = f.read()
-        content_pars = content_pars.split('\n')
-        for pars in content_pars:
-            if len(pars) == 0:
-                break
-            pars = pars.split(' ')
+        for pars in f:
+            pars = pars.split()
             yield pars[0], pars[5].replace('"', ''), pars[6]
-        return content_pars
 
 
 content_read = read_file(F_NAME)  # Чтение содержимого файла, разбитие на строки.
